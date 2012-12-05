@@ -34,7 +34,7 @@ Test-Suite spec
   Main-Is:              Spec.hs
   Other-Modules:        Base64Spec
   Build-Depends:        base
-                      , hspec
+                      , hspec >= 1.3
                       , QuickCheck
                       , unit-test-example
 
