@@ -17,7 +17,7 @@ Library
   Build-Depends:        base >= 4 && < 5
                       , array
 
-Test-Suite doctests
+Test-Suite doctest
   Type:                 exitcode-stdio-1.0
   Default-Language:     Haskell2010
   HS-Source-Dirs:       test
