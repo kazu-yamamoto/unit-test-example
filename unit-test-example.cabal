@@ -1,0 +1,43 @@
+Name:                   unit-test-example
+Version:                0.0.0
+Author:                 Kazu Yamamoto <kazu@iij.ad.jp>
+Maintainer:             Kazu Yamamoto <kazu@iij.ad.jp>
+License:                BSD3
+License-File:           LICENSE
+Synopsis:               Unit test example for Haskell
+Description:            Using Cabal as test framework for doctest and hspec
+Category:               Codec
+Cabal-Version:          >= 1.10
+Build-Type:             Simple
+
+Library
+  Default-Language:     Haskell2010
+  GHC-Options:          -Wall
+  Exposed-Modules:      Codec.Base64
+  Build-Depends:        base >= 4 && < 5
+                      , array
+
+Test-Suite doctests
+  Type:                 exitcode-stdio-1.0
+  Default-Language:     Haskell2010
+  HS-Source-Dirs:       test
+  Ghc-Options:          -threaded -Wall
+  Main-Is:              doctests.hs
+  Build-Depends:        base
+                      , doctest >= 0.9.3
+
+Test-Suite spec
+  Type:                 exitcode-stdio-1.0
+  Default-Language:     Haskell2010
+  Hs-Source-Dirs:       test
+  Ghc-Options:          -Wall
+  Main-Is:              Spec.hs
+  Other-Modules:        Base64Spec
+  Build-Depends:        base
+                      , hspec
+                      , QuickCheck
+                      , unit-test-example
+
+Source-Repository head
+  Type:                 git
+  Location:             https://github.com/kazu-yamamoto/unit-test-example
