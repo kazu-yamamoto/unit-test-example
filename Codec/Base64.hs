@@ -6,7 +6,7 @@ import Data.Char
 import Data.Word
 
 -- |
--- Base64 encoding
+-- Base64 encoding.
 --
 -- >>> encode "foo bar"
 -- "Zm9vIGJhcg=="
@@ -36,7 +36,7 @@ pad :: Word8
 pad = 64
 
 -- |
--- Base64 decoding
+-- Base64 decoding.
 --
 -- >>> decode "Zm9vIGJhcg=="
 -- "foo bar"
