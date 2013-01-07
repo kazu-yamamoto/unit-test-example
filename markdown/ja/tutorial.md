@@ -51,7 +51,7 @@ GHCiなので、let とかも使えます。この例は純粋ですが、もち
 
 マニュアルはこんな感じになります。
 
-f:id:kazu-yamamoto:20121205153303p:image
+![マニュアルの例](../img/haddock.png)
 
 doctest でテストを実行してみましょう。
 
