@@ -15,7 +15,7 @@ Haskellで作成したパッケージに対して、単体テストを書くた�
 
 この記事で一番伝えたいのは、3) です。例題としては、Base64 という符号化を取り上げます。Base64 は知っていると仮定して話を進めますので、知らない人はあらかじめ [Wikipedia の Base64 の説明](http://ja.wikipedia.org/wiki/Base64)でも読んで下さい。
 
-この記事で利用するコードの全体は、[unit-test-example](https://github.com/kazu-yamamoto/unit-test-example)というパッケージ名でgithubに置いてあります。以下の例は、このパッケージのトップディレクトリにいると想定しています。
+この記事で利用するコードの全体は、[unit-test-example](https://github.com/kazu-yamamoto/unit-test-example)というパッケージ名でgithubに置いてあります。以降の例では、このパッケージのトップディレクトリにいると想定しています。
 
 ##doctest
 
@@ -41,9 +41,18 @@ Codec.Base64 の例を見てみましょう。
     decode :: String -> String
     decode = ...
 
-">>>" の次の行には、結果を書きます。">>>" は GHCi のプロンプトだと思って構いません。すでに実装がある場合は、GHCi で対話的に動かした例をコピー＆ペーストしてプロンプトを変更するだけです。
+">>>" の次の行には、結果を書きます。">>>" は GHCi のプロンプトだと思って構いません。すでに実装がある場合は、GHCi で対話的に動かした例をコピー＆ペーストして("Prelude>" などといった)プロンプトを変更するだけです。
 
-GHCiなので、let とかも使えます。この例は純粋ですが、もちろん IO でもOKです。GHCi でできることは、すべてできます。テストは単なる文字列比較なので、例外も書けます。詳しくは doctest のマニュアルを読んで下さい。
+GHCiなので、let とかも使えます。
+
+    -- |
+    -- Base64 decoding.
+    --
+    -- >>> let xs="Zm9vIGJhcg=="
+    -- >>> decode xs
+    "foo bar"
+
+これまでの例は純粋ですが、もちろん IO でもOKです。GHCi でできることは、すべてできます。テストは単なる文字列比較なので、例外も書けます。詳しくは doctest のマニュアルを読んで下さい。
 
 以下のコマンドで、"dist" の下に HTML のマニュアルを作成できます。
 
@@ -94,7 +103,7 @@ doctest をインストールしていない人は、以下のコマンドを実
 
 このように hspec では、shouldBe など分かり易い単語を使って、テストケースを楽しく書けます。この「楽しい」という感覚がとても大事です。
 
-上記の例は純粋ですが、もちろん IO も書けます。詳しい使い方は hspec のマニュアルを読んで下さい。shouldBe、shouldReturn、shouldThrow は要チェックです。
+上記の例は純粋ですが、もちろん IO も書けます。詳しい使い方は hspec のマニュアルを読んで下さい。shouldBe、shouldReturn、shouldThrow 要チェックです。
 
 Spec は、hspec 関数で実行できます。
 
