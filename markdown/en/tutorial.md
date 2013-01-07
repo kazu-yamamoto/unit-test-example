@@ -61,5 +61,15 @@ Here is an example of image of a manual:
 
 ![An example of manual](https://raw.github.com/kazu-yamamoto/unit-test-example/master/markdown/img/haddock.png)
 
+Let's run test with the doctest command:
+
+    % doctest Codec/Base64.hs
+    Examples: 2  Tried: 2  Errors: 0  Failures: 0
+
+If you don't install doctest yet, please execute the following command:
+
+    % cabal install --enable-test --only-dependencies
+
+With this command, you can install necessary libraries and commands without installing the current package.
 
 
