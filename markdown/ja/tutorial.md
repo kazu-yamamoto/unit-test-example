@@ -51,7 +51,7 @@ GHCiなので、let とかも使えます。この例は純粋ですが、もち
 
 マニュアルはこんな感じになります。
 
-![マニュアルの例](https://github.com/kazu-yamamoto/unit-test-example/blob/master/markdown/img/haddock.png)
+![マニュアルの例](https://github.com/kazu-yamamoto/unit-test-example/master/markdown/img/haddock.png)
 
 doctest でテストを実行してみましょう。
 
