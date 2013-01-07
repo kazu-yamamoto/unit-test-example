@@ -45,14 +45,21 @@ Codec.Base64 の例を見てみましょう。
 
 GHCiなので、let とかも使えます。
 
-    -- |
-    -- Base64 decoding.
-    --
     -- >>> let xs="Zm9vIGJhcg=="
     -- >>> decode xs
     "foo bar"
 
-これまでの例は純粋ですが、もちろん IO でもOKです。GHCi でできることは、すべてできます。テストは単なる文字列比較なので、例外も書けます。詳しくは doctest のマニュアルを読んで下さい。
+これまでの例は純粋ですが、もちろん IO でもOKです。GHCi でできることは、すべてできます。
+
+    -- >>> doesFileExist "/foo"
+    -- False
+
+テストは単なる文字列比較なので、例外も書けます。
+
+    -- >>> 1 `div` 0
+    -- *** Exception: divide by zero
+
+詳しくは doctest のマニュアルを読んで下さい。
 
 以下のコマンドで、"dist" の下に HTML のマニュアルを作成できます。
 
