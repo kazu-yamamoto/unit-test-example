@@ -1,37 +1,50 @@
-#Unit test in Haskell at the front
+AZ: I am editing the doc as I proofread, and will comment on my changes where I am unsure with a prefix of AZ, as here
 
-This article is a tutorial about unit test in Haskell using doctest, hspec and Cabal.
+#Up-front Unit testing in Haskell
+AZ: I presume you mean a test-driven approach, 
+
+This article is a tutorial about unit testing in Haskell using doctest, hspec and Cabal.
 
 ##Abstract
 
 Important points are summarized as follows:
 
-- The behaviors to show the users of your library should be written with [doctest](https://github.com/sol/doctest-haskell#readme)
-- The behaviors not to show the users of your library should be written with [hspec](http://hspec.github.com/)
-- As a test framework to automate testing, Cabal is used
-- For pure code, properties test cases (with doctest and/or hspec) should be written as much as possible
+- The behaviors documenting the use of your library should be written with [doctest](https://github.com/sol/doctest-haskell#readme)
+- The behaviors documenting functionality rather than usage of your library should be written with [hspec](http://hspec.github.com/)
+- Cabal is used to automate testing with the frameworks
+- For pure code, QuickCheck property test cases (with doctest and/or hspec) should be written as much as possible
 
 In this tutorial,
-we use the Base64 encoding/decoding as an example.
-You are supposed to know what they are.
-If you don't know them,
+we use Base64 encoding/decoding as an example.
+It is assumed thay you know what it is.
+If you don't know,
 please read [the explanation about Base64 in wikipedia](http://en.wikipedia.org/wiki/Base64) beforehand.
 
-The package includes the examples of this tutorial is available on github.
-Its package name is [unit-test-example](https://github.com/kazu-yamamoto/unit-test-example).
-It is assumed that we are at the "unit-test-example" directory henceforth.
+AZ: Is it an actual package (on hackage, or just a repository on github? If a package
+
+The package included the examples of this tutorial is available on github.
+The package name is [unit-test-example](https://github.com/kazu-yamamoto/unit-test-example).
+
+AZ: if a repo
+
+The source used in the examples of this tutorial is available on github.
+The repository is [https://github.com/kazu-yamamoto/unit-test-example](https://github.com/kazu-yamamoto/unit-test-example).
+
+
+
+It is assumed henceforth that we are at the "unit-test-example" directory.
 
 ##doctest
 
-The behaviors to show the users of your library should be written with doctest.
+The behaviors documenting the use of your library should be written with doctest.
 If you do so,
-they can be documentations and can be used for testing.
+they can be documentation and can also be used for testing.
 (I hope that you also use doctest for design
-but this article does not talk about this.)
+but this article does is not about that.)
 
-The documentation tool of Haskell is Haddock.
-With Haddock, documentations are written in comments with markups.
-For usage examples, the `>>>` markup is prepared.
+The Haskell documentation tool is Haddock.
+With Haddock, documentation is written in comments with markup.
+For doctest usage examples, the `>>>` markup is used.
 
 Let's look at an example of "Codec.Base64" in "unit-test-example":
 
@@ -51,17 +64,19 @@ Let's look at an example of "Codec.Base64" in "unit-test-example":
     decode :: String -> String
     decode = ...
 
-In the next line of `>>>`,
-its result value is written.
-You can consider that `>>>` is the prompt of GHCi.
+The result value is placed in the line following `>>>`.
+You can treat `>>>` as the GHCi prompt.
 If a function is already defined,
-you can copy & paste the interactive session of GHCi
-then change the prompt of GHCi (such as `Prelude>`) to `>>>`.
+you can copy & paste the interactive session from GHCi
+and then change the GHCi prompt (e.g. `Prelude>`) to `>>>`.
 
-You can use `let` because it is GHCi's session.
+You can use `let` because it is a GHCi session.
 
     -- >>> doesFileExist "/foo"
     -- False
+
+AZ: the above example does not use let
+
 
 Since test is done by simply comparing strings,
 you can describe exceptions:
@@ -70,48 +85,48 @@ you can describe exceptions:
     -- *** Exception: divide by zero
 
 For more information,
-please refer to the manual of doctest.
+please refer to the doctest manual.
+AZ: might be worthwhile to make 'doctest manual' above a link.
 
 You can create an HTML manual under the "dist" directory
 with the following command:
 
     % cabal haddock --hyperlink-source
 
-Here is an example of image of a manual:
+Here is an image of an example manual:
 
 ![An example of manual](https://raw.github.com/kazu-yamamoto/unit-test-example/master/markdown/img/haddock.png)
 
-Let's run test with the "doctest" command:
+Let's run the tests with the "doctest" command:
 
     % doctest Codec/Base64.hs
     Examples: 2  Tried: 2  Errors: 0  Failures: 0
 
-If you don't install doctest yet, please execute the following command:
+If you haven't installed doctest yet, please execute the following command:
 
     % cabal install --enable-test --only-dependencies
 
-With this command,
-you can install necessary libraries and commands
+This command will install the necessary libraries and commands
 without installing the current package.
 
 ##hspec
 
-The behaviors not to show the users of your library
-should be written with hspec.
-Basically, one test file should be prepared for earch module.
+The behaviors documenting functionality rather than usage 
+of your library should be written with hspec.
+Basically, one test file should be prepared for each module.
 For instance, "Base64Spec.hs" is created for "Base64.hs".
 
 It is important to note that
 test files should be placed
-in the different directory from that of source files.
-If you obey this rule,
-you can specify your library as a dependency of test suite in a Cabal file,
+in a different directory from that of source files.
+If you follow this rule,
+you can specify your library as a dependency of the test suite in a Cabal file,
 which is described later.
 
 If you don't understand what this means,
 please remember one rule:
-making the "test" directory and
-all test files are placed there.
+Making a "test" directory and
+place all test files there.
 
 The following is an example of "test/Base64Spec":
 
@@ -141,7 +156,8 @@ The sense of fun is crucial.
 Though the examples above are pure,
 you can write test cases for IO.
 For more information,
-please refer to the manual of hspec.
+please refer to the hspec manual of.
+AZ: perhaps a hyperlink here too
 You should carefully check `shouldBe`, `shouldReturn` and `shouldThrow`
 (they are called "matcher" in RSpec terminologies).
 
@@ -164,7 +180,7 @@ You can run Spec with the "hspec" function:
 
 ##QuickCheck
 
-Properties of QuickCheck can be specified in hspec, too.
+QuickCheck Properties can be specified in hspec, too.
 Just use `prop` instead of `it`:
 
     spec :: Spec
@@ -183,7 +199,7 @@ Just use `prop` instead of `it`:
 
 To automate running test suites, use Cabal.
 You need to specify information about test suites
-in a Cabal file:
+in the Cabal file:
 
     Test-Suite doctest
       Type:                 exitcode-stdio-1.0
@@ -230,6 +246,13 @@ For hspec,
 the following one line should be stored in "test/Spec.hs":
 
     {-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+    
+AZ: perhaps add a one-line description of what this does. e.g.
+
+The "test/Spec.hs" file above will trigger a process to pick up 
+all the tests in all the  hspec files in the same directory.
+
+
 
 The procedure to automatically run test suites is as follows:
 
@@ -248,8 +271,8 @@ The procedure to automatically run test suites is as follows:
 If tests fail, please read the indicated log files
 and search the failure cases and their values.
 
-100 randam values are generated for one property with the default of hspec.
-If you want to change it, do as follows:
+100 random values are generated for one property by default in hspec.
+If you want to change it, do so as follows:
 
     % cabal test --test-option=--maximum-generated-tests=1000
 
@@ -259,7 +282,7 @@ Travis CI is a service to automatically run test suites
 when you push your commits to github.
 To use Travis CI, you need to set it up as follows:
 
-- Login into [Travis CI](https://travis-ci.org/) with you gihub account
+- Login into [Travis CI](https://travis-ci.org/) with your gihub account
 - Select "Accounts" by clicking your name on the right top to go to your account page
 - Click the "Sync now" button to retrieve package (repository) information from github
 - Enabling the service for necessary packages
@@ -289,9 +312,9 @@ The following is my experience as a Mac user:
 
 You should choose the combination of more stable ones if necessary.
 
-###The arguments of doctest
+###The doctest arguments
 
-The arguments of doctest (function and command) is
+The doctest arguments (function and command) is
 exactly the same as that of GHCi.
 To run doctest well,
 various arguments are sometime necessary.
@@ -305,19 +328,22 @@ please refer to [unix-time](https://github.com/kazu-yamamoto/unix-time).
 
 ###doctest, haddock and QuickCheck
 
-To describe properties of QuickCheck in documents,
+To describe QuickCheck properties in documents,
 the `prop>` markup is already defined in latest haddock.
-Also, doctest already supports it.
-A question is when Haskell Platform includes
-haddock which supports this notation.
 
-haddock is delivered by GHC.
+AZ: perhaps specify from which version
+
+Also, doctest already supports it.
+An open question is when the Haskell Platform will include
+a version of haddock which supports this notation.
+
+haddock is packaged with GHC.
 GHC automatically uses
 [the "master" branch of haddock](https://github.com/ghc/haddock).
 The branch supporting the `prop>` markup is "ghc-7.6".
 So, "ghc-7.6" should be merged into "master".
 Since some test cases fail at this moment,
-merge is not carried out yet.
+the merge has not been carried out yet.
 But I hope that "ghc-7.6" will be merged into "master" in the near future.
 
 ##Internal modules
