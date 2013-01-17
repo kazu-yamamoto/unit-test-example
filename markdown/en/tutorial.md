@@ -19,7 +19,7 @@ please read [the explanation about Base64 in wikipedia](http://en.wikipedia.org/
 
 The package includes the examples of this tutorial is available on github.
 Its package name is [unit-test-example](https://github.com/kazu-yamamoto/unit-test-example).
-It is assumed that we are at the unit-test-example directory henceforth.
+It is assumed that we are at the "unit-test-example" directory henceforth.
 
 ##doctest
 
@@ -31,7 +31,7 @@ but this article does not talk about this.)
 
 The documentation tool of Haskell is Haddock.
 With Haddock, documentations are written in comments with markups.
-For usage examples, the ">>>" markup is prepared.
+For usage examples, the `>>>` markup is prepared.
 
 Let's look at an example of Codec.Base64 in unit-test-example:
 
@@ -51,12 +51,12 @@ Let's look at an example of Codec.Base64 in unit-test-example:
     decode :: String -> String
     decode = ...
 
-In the next line of ">>>",
+In the next line of `>>>`,
 its result value is written.
-You can consider that ">>>" is the prompt of GHCi.
+You can consider that `>>>` is the prompt of GHCi.
 If a function is already defined,
 you can copy & paste the interactive session of GHCi
-then change the prompt of GHCi (such as "Prelude>") to ">>>".
+then change the prompt of GHCi (such as "Prelude>") to `>>>`.
 
 You can use "let" because it is GHCi's session.
 
@@ -99,7 +99,7 @@ without installing the current package.
 The behaviors not to show the users of your library
 should be written with hspec.
 Basically, one test file should be prepared for earch module.
-For instance, Base64Spec.hs is created for Base64.hs.
+For instance, "Base64Spec.hs" is created for "Base64.hs".
 
 It is important to note that
 test files should be placed
@@ -206,10 +206,10 @@ in a Cabal file:
                           , QuickCheck
                           , unit-test-example
 
-Please note that the library itself (unit-test-example in this case) can
+Please note that your library itself (unit-test-example in this case) can
 be specified as dependency in the test suite for hspec.
 If you store test files in the same directory of source code,
-you have to repeat the dependencies of the library here.
+you have to repeat the dependencies of your library here.
 
 For doctest,
 "test/doctest.hs" should be created in addition to the Cabal file:
@@ -306,7 +306,7 @@ please refer to [unix-time](https://github.com/kazu-yamamoto/unix-time).
 ###doctest, haddock and QuickCheck
 
 To describe properties of QuickCheck in documents,
-the "prop>" markup is already defined in latest haddock.
+the `prop>` markup is already defined in latest haddock.
 Also, doctest already supports it.
 A question is when Haskell Platform includes
 haddock which supports this notation.
@@ -314,7 +314,7 @@ haddock which supports this notation.
 haddock is delivered with GHC.
 GHC automatically uses
 [the "master" branch of haddock](https://github.com/ghc/haddock).
-The branch supporting the "prop>" markup is "ghc-7.6".
+The branch supporting the `prop>` markup is "ghc-7.6".
 So, "ghc-7.6" should be merged into "master".
 Since some test cases fail at this moment,
 merge is not carried out yet.
@@ -335,8 +335,8 @@ add the parent directory to HS-Source-Dirs:
 
 Now test code can import the internal modules.
 Unfortunately,
-test suites cannot depend on the library itself in this case.
-So, you need to repeat that dependencies of the library
+test suites cannot depend on your library itself in this case.
+So, you need to repeat that dependencies of your library
 in Build-Depends of test suites.
 
 ##Remark
