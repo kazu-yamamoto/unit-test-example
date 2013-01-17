@@ -245,3 +245,44 @@ The procedure to automatically run test suites is as follows:
     Test suite logged to: dist/test/unit-test-example-0.0.0-doctest.log
     2 of 2 test suites (2 of 2 test cases) passed.
 
+If tests fail, please read the indicated log files
+and search the failure cases and their values.
+
+100 randam values are generated for one property with the default of hspec.
+If you want to change it, do as follows:
+
+    % cabal test --test-option=--maximum-generated-tests=1000
+
+##Travis CI
+
+Travis CI is a service to automatically run test suites
+when you push your commits to github.
+To use Travis CI, you need to set it up as follows:
+
+- Login into [Travis CI](https://travis-ci.org/) with you gihub account
+- Select "Accounts" by clicking your name on the right top to go to your account page
+- Click the "Sync now" button to retrieve package (repository) information from github
+- Enabling the service for necessary packages
+
+Then you need to create ".travis.yml" which stores the following one line:
+
+    language: haskell
+
+Then push this file to github.
+After that,
+test suites will be run on Travis CI when you push your commits
+and a result is delivered to you by e-mail.
+
+##Miscellaneous things
+
+###doctest and Mac
+
+###The arguments of doctest
+
+###doctest, haddock and QuickCheck
+
+##Internal modules
+
+##Remark
+
+Happy unit-testing in Haskell!
