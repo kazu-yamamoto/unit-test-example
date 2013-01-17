@@ -26,14 +26,14 @@ It is assumed that we are at the "unit-test-example" directory henceforth.
 The behaviors to show the users of your library should be written with doctest.
 If you do so,
 they can be documentations and can be used for testing.
-(I hope you also use doctest for design
+(I hope that you also use doctest for design
 but this article does not talk about this.)
 
 The documentation tool of Haskell is Haddock.
 With Haddock, documentations are written in comments with markups.
 For usage examples, the `>>>` markup is prepared.
 
-Let's look at an example of Codec.Base64 in unit-test-example:
+Let's look at an example of "Codec.Base64" in "unit-test-example":
 
     -- |
     -- Base64 encoding.
@@ -81,7 +81,7 @@ Here is an example of image of a manual:
 
 ![An example of manual](https://raw.github.com/kazu-yamamoto/unit-test-example/master/markdown/img/haddock.png)
 
-Let's run test with the doctest command:
+Let's run test with the "doctest" command:
 
     % doctest Codec/Base64.hs
     Examples: 2  Tried: 2  Errors: 0  Failures: 0
@@ -145,7 +145,7 @@ please refer to the manual of hspec.
 You should carefully check `shouldBe`, `shouldReturn` and `shouldThrow`
 (they are called "matcher" in RSpec terminologies).
 
-You can run Spec with the hspec function:
+You can run Spec with the "hspec" function:
 
     % ghci test/Base64Spec.hs
     > hspec spec
@@ -206,7 +206,7 @@ in a Cabal file:
                           , QuickCheck
                           , unit-test-example
 
-Please note that your library itself (unit-test-example in this case) can
+Please note that your library itself ("unit-test-example" in this case) can
 be specified as dependency in the test suite for hspec.
 If you store test files in the same directory of source code,
 you have to repeat the dependencies of your library here.
@@ -287,7 +287,7 @@ The following is my experience as a Mac user:
 - 32 bit GHCi is more stable than 64 bit GHCi
 - GHCi 7.6.x is more stable than GHCi 7.4.x
 
-You should choose the combination of more stable ones.
+You should choose the combination of more stable ones if necessary.
 
 ###The arguments of doctest
 
@@ -311,14 +311,14 @@ Also, doctest already supports it.
 A question is when Haskell Platform includes
 haddock which supports this notation.
 
-haddock is delivered with GHC.
+haddock is delivered by GHC.
 GHC automatically uses
 [the "master" branch of haddock](https://github.com/ghc/haddock).
 The branch supporting the `prop>` markup is "ghc-7.6".
 So, "ghc-7.6" should be merged into "master".
 Since some test cases fail at this moment,
 merge is not carried out yet.
-But I hope "ghc-7.6" will be merged into "master" in the near future.
+But I hope that "ghc-7.6" will be merged into "master" in the near future.
 
 ##Internal modules
 
