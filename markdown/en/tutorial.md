@@ -56,9 +56,9 @@ its result value is written.
 You can consider that `>>>` is the prompt of GHCi.
 If a function is already defined,
 you can copy & paste the interactive session of GHCi
-then change the prompt of GHCi (such as "Prelude>") to `>>>`.
+then change the prompt of GHCi (such as `Prelude>`) to `>>>`.
 
-You can use "let" because it is GHCi's session.
+You can use `let` because it is GHCi's session.
 
     -- >>> doesFileExist "/foo"
     -- False
@@ -133,8 +133,8 @@ The following is an example of "test/Base64Spec":
             it "encodes two paddings" $
                 decode "cGFkZGluZzE=" `shouldBe` "padding1"
 
-As you see,
-you can write test cases with easy-to-understand words such as shouldBe
+As you can see,
+you can write test cases with easy-to-understand words such as `shouldBe`
 in a fun manner.
 The sense of fun is crucial.
 
@@ -142,7 +142,7 @@ Though the examples above are pure,
 you can write test cases for IO.
 For more information,
 please refer to the manual of hspec.
-You should carefully check shouldBe, shouldReturn, and shouldThrow
+You should carefully check `shouldBe`, `shouldReturn` and `shouldThrow`
 (they are called "matcher" in RSpec terminologies).
 
 You can run Spec with the hspec function:
@@ -165,7 +165,7 @@ You can run Spec with the hspec function:
 ##QuickCheck
 
 Properties of QuickCheck can be specified in hspec, too.
-Just use "prop" instead of "it":
+Just use `prop` instead of `it`:
 
     spec :: Spec
     spec = do
