@@ -164,3 +164,84 @@ You can run Spec with the hspec function:
 
 ##QuickCheck
 
+Properties of QuickCheck can be specified in hspec, too.
+Just use "prop" instead of "it":
+
+    spec :: Spec
+    spec = do
+        describe "encode" $ do
+            ...
+            prop "reverses decoded string" $ \(Base64 xs) ->
+                encode (decode xs) == xs
+    
+        describe "decode" $ do
+            ...
+            prop "reverses encoded string" $ \xs ->
+                decode (encode xs) == xs
+
+##Cabal
+
+To automate running test suites, use Cabal.
+You need to specify information about test suites
+in a Cabal file:
+
+    Test-Suite doctest
+      Type:                 exitcode-stdio-1.0
+      Default-Language:     Haskell2010
+      HS-Source-Dirs:       test
+      Ghc-Options:          -threaded -Wall
+      Main-Is:              doctests.hs
+      Build-Depends:        base
+                          , doctest >= 0.9.3
+    
+    Test-Suite spec
+      Type:                 exitcode-stdio-1.0
+      Default-Language:     Haskell2010
+      Hs-Source-Dirs:       test
+      Ghc-Options:          -Wall
+      Main-Is:              Spec.hs
+      Other-Modules:        Base64Spec
+      Build-Depends:        base
+                          , hspec >= 1.3
+                          , QuickCheck
+                          , unit-test-example
+
+Please note that the library itself (unit-test-example in this case) can
+be specified as dependency in the test suite for hspec.
+If you store test files in the same directory of source code,
+you have to repeat the dependencies of the library here.
+
+For doctest,
+"test/doctest.hs" should be created in addition to the Cabal file:
+
+    module Main where
+    
+    import Test.DocTest
+    
+    main :: IO ()
+    main = doctest ["Codec/Base64.hs"]
+
+The arguments of the "doctest" function is
+the same as that of the "doctest" command
+(which is also identical to that of GHCi).
+They should be stored in a list literal of Haskell.
+
+For hspec,
+the following one line should be stored in "test/Spec.hs":
+
+    {-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+
+The procedure to automatically run test suites is as follows:
+
+    % cabal configure --enable-tests
+    % cabal build
+    % cabal test
+    Running 2 test suites...
+    Test suite spec: RUNNING...
+    Test suite spec: PASS
+    Test suite logged to: dist/test/unit-test-example-0.0.0-spec.log
+    Test suite doctest: RUNNING...
+    Test suite doctest: PASS
+    Test suite logged to: dist/test/unit-test-example-0.0.0-doctest.log
+    2 of 2 test suites (2 of 2 test cases) passed.
+
