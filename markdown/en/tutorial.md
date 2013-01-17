@@ -277,11 +277,67 @@ and a result is delivered to you by e-mail.
 
 ###doctest and Mac
 
+doctest is implemented based on GHCi.
+Unfortunately, GHCi on Mac is unstable.
+Due to this,
+running doctest itself sometime fails.
+The following is my experience as a Mac user:
+
+- "cabal build + test" is more stable than executing the "doctest" command
+- 32 bit GHCi is more stable than 64 bit GHCi
+- GHCi 7.6.x is more stable than GHCi 7.4.x
+
+You should choose the combination of more stable ones.
+
 ###The arguments of doctest
+
+The arguments of doctest (function and command) is
+exactly the same as that of GHCi.
+To run doctest well,
+various arguments are sometime necessary.
+One common case is "-XOverloadedStrings".
+
+If you write C code by yourself
+and use it from Haskell with FFI,
+you may wonder what arguments should be specified.
+In this case,
+please refer to [unix-time](https://github.com/kazu-yamamoto/unix-time).
 
 ###doctest, haddock and QuickCheck
 
+To describe properties of QuickCheck in documents,
+the "prop>" markup is already defined in latest haddock.
+Also, doctest already supports it.
+A question is when Haskell Platform includes
+haddock which supports this notation.
+
+haddock is delivered with GHC.
+GHC automatically uses
+[the "master" branch of haddock](https://github.com/ghc/haddock).
+The branch supporting the "prop>" markup is "ghc-7.6".
+So, "ghc-7.6" should be merged into "master".
+Since some test cases fail at this moment,
+merge is not carried out yet.
+But I hope "ghc-7.6" will be merged into "master" in the near future.
+
 ##Internal modules
+
+You may want to use hidden constructors in test cases.
+Common practice for this is to prepare
+an internal module (whose typical name is "Internal.hs").
+If a test file includes this internal module,
+hidden constructors can be used.
+
+To use internal modules from test suites specified in a Cabal file,
+add the parent directory to HS-Source-Dirs:
+
+      HS-Source-Dirs:       test,..
+
+Now test code can import the internal modules.
+Unfortunately,
+test suites cannot depend on the library itself in this case.
+So, you need to repeat that dependencies of the library
+in Build-Depends of test suites.
 
 ##Remark
 
