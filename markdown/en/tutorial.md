@@ -29,7 +29,7 @@ they can be documentation and can also be used for testing.
 (I hope that you also use doctest for design
 but this article does is not about that.)
 
-The Haskell documentation tool is Haddock.
+The Haskell documentation tool is [Haddock](http://www.haskell.org/haddock/doc/html/).
 With Haddock, documentation is written in comments with markup.
 For doctest usage examples, the `>>>` markup is used.
 
