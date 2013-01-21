@@ -1,7 +1,4 @@
-AZ: I am editing the doc as I proofread, and will comment on my changes where I am unsure with a prefix of AZ, as here
-
 #Up-front Unit testing in Haskell
-AZ: I presume you mean a test-driven approach, 
 
 This article is a tutorial about unit testing in Haskell using doctest, hspec and Cabal.
 
@@ -20,17 +17,8 @@ It is assumed thay you know what it is.
 If you don't know,
 please read [the explanation about Base64 in wikipedia](http://en.wikipedia.org/wiki/Base64) beforehand.
 
-AZ: Is it an actual package (on hackage, or just a repository on github? If a package
-
 The package included the examples of this tutorial is available on github.
 The package name is [unit-test-example](https://github.com/kazu-yamamoto/unit-test-example).
-
-AZ: if a repo
-
-The source used in the examples of this tutorial is available on github.
-The repository is [https://github.com/kazu-yamamoto/unit-test-example](https://github.com/kazu-yamamoto/unit-test-example).
-
-
 
 It is assumed henceforth that we are at the "unit-test-example" directory.
 
@@ -72,11 +60,15 @@ and then change the GHCi prompt (e.g. `Prelude>`) to `>>>`.
 
 You can use `let` because it is a GHCi session.
 
+    -- >>> let xs="Zm9vIGJhcg=="
+    -- >>> decode xs
+    "foo bar"
+
+Though all examples above are pure, you can use IO.
+You can specify whatever GHCi can do.
+
     -- >>> doesFileExist "/foo"
     -- False
-
-AZ: the above example does not use let
-
 
 Since test is done by simply comparing strings,
 you can describe exceptions:
@@ -85,8 +77,7 @@ you can describe exceptions:
     -- *** Exception: divide by zero
 
 For more information,
-please refer to the doctest manual.
-AZ: might be worthwhile to make 'doctest manual' above a link.
+please refer to [the doctest manual](https://github.com/sol/doctest-haskell#readme).
 
 You can create an HTML manual under the "dist" directory
 with the following command:
@@ -156,8 +147,7 @@ The sense of fun is crucial.
 Though the examples above are pure,
 you can write test cases for IO.
 For more information,
-please refer to the hspec manual of.
-AZ: perhaps a hyperlink here too
+please refer to [the hspec manual](http://hspec.github.com/).
 You should carefully check `shouldBe`, `shouldReturn` and `shouldThrow`
 (they are called "matcher" in RSpec terminologies).
 
@@ -247,12 +237,8 @@ the following one line should be stored in "test/Spec.hs":
 
     {-# OPTIONS_GHC -F -pgmF hspec-discover #-}
     
-AZ: perhaps add a one-line description of what this does. e.g.
-
 The "test/Spec.hs" file above will trigger a process to pick up 
 all the tests in all the  hspec files in the same directory.
-
-
 
 The procedure to automatically run test suites is as follows:
 
@@ -329,9 +315,7 @@ please refer to [unix-time](https://github.com/kazu-yamamoto/unix-time).
 ###doctest, haddock and QuickCheck
 
 To describe QuickCheck properties in documents,
-the `prop>` markup is already defined in latest haddock.
-
-AZ: perhaps specify from which version
+the `prop>` markup is already defined in latest haddock (version 2.13.0 or later).
 
 Also, doctest already supports it.
 An open question is when the Haskell Platform will include
