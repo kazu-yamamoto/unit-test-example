@@ -318,7 +318,6 @@ please refer to [unix-time](https://github.com/kazu-yamamoto/unix-time).
 
 To describe QuickCheck properties in documents,
 the `prop>` markup is already defined in latest haddock (version 2.13.0 or later).
-
 Also, doctest already supports it.
 An open question is when the Haskell Platform will include
 a version of haddock which supports this notation.
@@ -353,4 +352,9 @@ in Build-Depends of test suites.
 
 ##Remark
 
-Happy unit-testing in Haskell!
+I thank Alan Zimmerman for his proofreading.
+
+Please feel free to point out grammar or contents errors.
+Pull requests are wellcome.
+
+Happy unit testing in Haskell!
