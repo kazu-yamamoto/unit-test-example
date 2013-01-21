@@ -21,6 +21,9 @@ The package included the examples of this tutorial is available on github.
 The package name is [unit-test-example](https://github.com/kazu-yamamoto/unit-test-example).
 It is assumed henceforth that we are at the "unit-test-example" directory.
 
+    % git clone git://github.com/kazu-yamamoto/unit-test-example.git
+    % cd unit-test-example
+
 ##doctest
 
 The behaviors documenting the use of your library should be written with doctest.
