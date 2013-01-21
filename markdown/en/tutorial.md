@@ -1,4 +1,4 @@
-#Up-front Unit testing in Haskell
+#Up-front Unit Testing in Haskell
 
 This article is a tutorial about unit testing in Haskell using doctest, hspec and Cabal.
 
@@ -19,7 +19,6 @@ please read [the explanation about Base64 in wikipedia](http://en.wikipedia.org/
 
 The package included the examples of this tutorial is available on github.
 The package name is [unit-test-example](https://github.com/kazu-yamamoto/unit-test-example).
-
 It is assumed henceforth that we are at the "unit-test-example" directory.
 
 ##doctest
