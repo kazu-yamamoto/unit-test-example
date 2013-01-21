@@ -270,7 +270,7 @@ Travis CI is a service to automatically run test suites
 when you push your commits to github.
 To use Travis CI, you need to set it up as follows:
 
-- Login into [Travis CI](https://travis-ci.org/) with your gihub account
+- Login into [Travis CI](https://travis-ci.org/) with your github account
 - Select "Accounts" by clicking your name on the right top to go to your account page
 - Click the "Sync now" button to retrieve package (repository) information from github
 - Enabling the service for necessary packages
@@ -355,6 +355,6 @@ in Build-Depends of test suites.
 I thank Alan Zimmerman for his proofreading.
 
 Please feel free to point out grammar or contents errors.
-Pull requests are wellcome.
+Pull requests are welcome.
 
 Happy unit testing in Haskell!
