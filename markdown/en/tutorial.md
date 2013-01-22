@@ -38,21 +38,23 @@ For doctest usage examples, the `>>>` markup is used.
 
 Let's look at an example of "Codec.Base64" in "unit-test-example":
 
-    -- |
-    -- Base64 encoding.
-    --
-    -- >>> encode "foo bar"
-    -- "Zm9vIGJhcg=="
-    encode :: String -> String
-    encode = ...
-    
-    -- |
-    -- Base64 decoding.
-    --
-    -- >>> decode "Zm9vIGJhcg=="
-    -- "foo bar"
-    decode :: String -> String
-    decode = ...
+```haskell
+-- |
+-- Base64 encoding.
+--
+-- >>> encode "foo bar"
+-- "Zm9vIGJhcg=="
+encode :: String -> String
+encode = ...
+
+-- |
+-- Base64 decoding.
+--
+-- >>> decode "Zm9vIGJhcg=="
+-- "foo bar"
+decode :: String -> String
+decode = ...
+```
 
 The result value is placed in the line following `>>>`.
 You can treat `>>>` as the GHCi prompt.
