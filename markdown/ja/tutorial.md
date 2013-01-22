@@ -199,7 +199,9 @@ doctest 関数の引数は、doctest コマンドに渡した引数を Haskell �
 
 hspec では、以下の一行を "test/Spec.hs" ファイルに書き込みます。
 
-    {-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+```haskell
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+```
 
 Cabal で自動的にテストする手順は以下の通りです。
 
