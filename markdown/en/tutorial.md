@@ -64,21 +64,27 @@ and then change the GHCi prompt (e.g. `Prelude>`) to `>>>`.
 
 You can use `let` because it is a GHCi session.
 
-    -- >>> let xs="Zm9vIGJhcg=="
-    -- >>> decode xs
-    "foo bar"
+```haskell
+-- >>> let xs="Zm9vIGJhcg=="
+-- >>> decode xs
+-- "foo bar"
+```
 
 Though all examples above are pure, you can use IO.
 You can specify whatever GHCi can do.
 
-    -- >>> doesFileExist "/foo"
-    -- False
+```haskell
+-- >>> doesFileExist "/foo"
+-- False
+```
 
 Since test is done by simply comparing strings,
 you can describe exceptions:
 
-    -- >>> 1 `div` 0
-    -- *** Exception: divide by zero
+```haskell
+-- >>> 1 `div` 0
+-- *** Exception: divide by zero
+```
 
 For more information,
 please refer to [the doctest manual](https://github.com/sol/doctest-haskell#readme).
