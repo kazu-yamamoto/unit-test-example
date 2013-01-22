@@ -25,39 +25,47 @@ Haskell のドキュメントツールは Haddock です。コメントに、マ
 
 unit-test-example にある Codec.Base64 の例を見てみましょう。
 
-    -- |
-    -- Base64 encoding.
-    --
-    -- >>> encode "foo bar"
-    -- "Zm9vIGJhcg=="
-    encode :: String -> String
-    encode = ...
-    
-    -- |
-    -- Base64 decoding.
-    --
-    -- >>> decode "Zm9vIGJhcg=="
-    -- "foo bar"
-    decode :: String -> String
-    decode = ...
+```haskell
+-- |
+-- Base64 encoding.
+--
+-- >>> encode "foo bar"
+-- "Zm9vIGJhcg=="
+encode :: String -> String
+encode = ...
+
+-- |
+-- Base64 decoding.
+--
+-- >>> decode "Zm9vIGJhcg=="
+-- "foo bar"
+decode :: String -> String
+decode = ...
+```
 
 ">>>" の次の行には、結果を書きます。">>>" は GHCi のプロンプトだと思って構いません。すでに実装がある場合は、GHCi で対話的に動かした例をコピー＆ペーストして("Prelude>" などといった)プロンプトを ">>>" へ変更するだけです。
 
 GHCiなので、let とかも使えます。
 
-    -- >>> let xs="Zm9vIGJhcg=="
-    -- >>> decode xs
-    "foo bar"
+```haskell
+-- >>> let xs="Zm9vIGJhcg=="
+-- >>> decode xs
+-- "foo bar"
+```
 
 これまでの例は純粋ですが、もちろん IO でもOKです。GHCi でできることは、すべてできます。
 
-    -- >>> doesFileExist "/foo"
-    -- False
+```haskell
+-- >>> doesFileExist "/foo"
+-- False
+```
 
 テストは単なる文字列比較なので、例外も書けます。
 
-    -- >>> 1 `div` 0
-    -- *** Exception: divide by zero
+```haskell
+-- >>> 1 `div` 0
+-- *** Exception: divide by zero
+```
 
 詳しくは doctest のマニュアルを読んで下さい。
 
@@ -90,23 +98,25 @@ doctest をインストールしていない人は、以下のコマンドを実
 
 "test/Base64Spec" の記述例を以下に示します。
 
-    spec :: Spec
-    spec = do
-        describe "encode" $ do
-            it "encodes multiples of 3" $
-                encode "no-padding!!" `shouldBe` "bm8tcGFkZGluZyEh"
-            it "encodes multiples of 3 + 1" $
-                encode "padding  2" `shouldBe` "cGFkZGluZyAgMg=="
-            it "encodes multiples of 3 + 2" $
-                encode "padding1" `shouldBe` "cGFkZGluZzE="
-    
-        describe "decode" $ do
-            it "decodes no padding" $
-                decode "bm8tcGFkZGluZyEh" `shouldBe` "no-padding!!"
-            it "dncodes one padding" $
-                decode "cGFkZGluZyAgMg==" `shouldBe` "padding  2"
-            it "encodes two paddings" $
-                decode "cGFkZGluZzE=" `shouldBe` "padding1"
+```haskell
+spec :: Spec
+spec = do
+    describe "encode" $ do
+        it "encodes multiples of 3" $
+            encode "no-padding!!" `shouldBe` "bm8tcGFkZGluZyEh"
+        it "encodes multiples of 3 + 1" $
+            encode "padding  2" `shouldBe` "cGFkZGluZyAgMg=="
+        it "encodes multiples of 3 + 2" $
+            encode "padding1" `shouldBe` "cGFkZGluZzE="
+
+     describe "decode" $ do
+        it "decodes no padding" $
+            decode "bm8tcGFkZGluZyEh" `shouldBe` "no-padding!!"
+        it "dncodes one padding" $
+            decode "cGFkZGluZyAgMg==" `shouldBe` "padding  2"
+        it "encodes two paddings" $
+            decode "cGFkZGluZzE=" `shouldBe` "padding1"
+```
 
 このように hspec では、shouldBe など分かり易い単語を使って、テストケースを楽しく書けます。この「楽しい」という感覚がとても大事です。
 
@@ -133,17 +143,19 @@ Spec は、hspec 関数で実行できます。
 
 hspec には QuickCheck の性質テストも記述できます。it を prop に変えれば OK です。
 
-    spec :: Spec
-    spec = do
-        describe "encode" $ do
-            ...
-            prop "reverses decoded string" $ \(Base64 xs) ->
-                encode (decode xs) == xs
+```hspec
+spec :: Spec
+spec = do
+    describe "encode" $ do
+        ...
+        prop "reverses decoded string" $ \(Base64 xs) ->
+            encode (decode xs) == xs
     
-        describe "decode" $ do
-            ...
-            prop "reverses encoded string" $ \xs ->
-                decode (encode xs) == xs
+    describe "decode" $ do
+        ...
+        prop "reverses encoded string" $ \xs ->
+            decode (encode xs) == xs
+```
 
 ##Cabal
 
@@ -174,12 +186,14 @@ hspec のところで、依存するパッケージに自分自身(unit-test-exa
 
 doctest では、これに加えて以下のような内容を "test/doctest.hs" ファイルに用意します。
 
-    module Main where
-    
-    import Test.DocTest
-    
-    main :: IO ()
-    main = doctest ["Codec/Base64.hs"]
+```haskell
+module Main where
+
+import Test.DocTest
+
+main :: IO ()
+main = doctest ["Codec/Base64.hs"]
+```
 
 doctest 関数の引数は、doctest コマンドに渡した引数を Haskell のリスト表記に直したものです。
 
