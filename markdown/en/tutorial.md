@@ -131,23 +131,25 @@ place all test files there.
 
 The following is an example of "test/Base64Spec":
 
-    spec :: Spec
-    spec = do
-        describe "encode" $ do
-            it "encodes multiples of 3" $
-                encode "no-padding!!" `shouldBe` "bm8tcGFkZGluZyEh"
-            it "encodes multiples of 3 + 1" $
-                encode "padding  2" `shouldBe` "cGFkZGluZyAgMg=="
-            it "encodes multiples of 3 + 2" $
-                encode "padding1" `shouldBe` "cGFkZGluZzE="
-    
-        describe "decode" $ do
-            it "decodes no padding" $
-                decode "bm8tcGFkZGluZyEh" `shouldBe` "no-padding!!"
-            it "dncodes one padding" $
-                decode "cGFkZGluZyAgMg==" `shouldBe` "padding  2"
-            it "encodes two paddings" $
-                decode "cGFkZGluZzE=" `shouldBe` "padding1"
+```haskell
+spec :: Spec
+spec = do
+    describe "encode" $ do
+        it "encodes multiples of 3" $
+            encode "no-padding!!" `shouldBe` "bm8tcGFkZGluZyEh"
+        it "encodes multiples of 3 + 1" $
+            encode "padding  2" `shouldBe` "cGFkZGluZyAgMg=="
+        it "encodes multiples of 3 + 2" $
+            encode "padding1" `shouldBe` "cGFkZGluZzE="
+
+    describe "decode" $ do
+        it "decodes no padding" $
+            decode "bm8tcGFkZGluZyEh" `shouldBe` "no-padding!!"
+        it "dncodes one padding" $
+            decode "cGFkZGluZyAgMg==" `shouldBe` "padding  2"
+        it "encodes two paddings" $
+            decode "cGFkZGluZzE=" `shouldBe` "padding1"
+```
 
 As you can see,
 you can write test cases with easy-to-understand words such as `shouldBe`
@@ -183,17 +185,19 @@ You can run Spec with the "hspec" function:
 QuickCheck Properties can be specified in hspec, too.
 Just use `prop` instead of `it`:
 
-    spec :: Spec
-    spec = do
-        describe "encode" $ do
-            ...
-            prop "reverses decoded string" $ \(Base64 xs) ->
-                encode (decode xs) == xs
-    
-        describe "decode" $ do
-            ...
-            prop "reverses encoded string" $ \xs ->
-                decode (encode xs) == xs
+```haskell
+spec :: Spec
+spec = do
+    describe "encode" $ do
+        ...
+        prop "reverses decoded string" $ \(Base64 xs) ->
+            encode (decode xs) == xs
+
+    describe "decode" $ do
+        ...
+        prop "reverses encoded string" $ \xs ->
+            decode (encode xs) == xs
+```
 
 ##Cabal
 
@@ -230,12 +234,14 @@ you have to repeat the dependencies of your library here.
 For doctest,
 "test/doctest.hs" should be created in addition to the Cabal file:
 
-    module Main where
-    
-    import Test.DocTest
-    
-    main :: IO ()
-    main = doctest ["Codec/Base64.hs"]
+```haskell
+module Main where
+
+import Test.DocTest
+
+main :: IO ()
+main = doctest ["Codec/Base64.hs"]
+```
 
 The arguments of the "doctest" function is
 the same as that of the "doctest" command
@@ -245,7 +251,9 @@ They should be stored in a list literal of Haskell.
 For hspec,
 the following one line should be stored in "test/Spec.hs":
 
-    {-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+```haskell
+{-# OPTIONS_GHC -F -pgmF hspec-discover #-}
+```
     
 The "test/Spec.hs" file above will trigger a process to pick up 
 all the tests in all the  hspec files in the same directory.
