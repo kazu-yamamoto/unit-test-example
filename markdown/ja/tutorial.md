@@ -10,10 +10,10 @@ Haskellで作成したパッケージに対して、単体テストを書くた�
 
 要点は4つです。
 
-+ 利用者に見せたい振る舞いは、[doctest](https://github.com/sol/doctest-haskell#readme) で書く
-+ 利用者に見せたくない振る舞いは、[hspec](http://hspec.github.com/) で書く
-+ テストを自動化するフレームワークとしては Cabal を使う
-+ doctest でも hspec でも、純粋なコードに対しては、できるだけ QuickCheck などの性質テストを書く
+1. 利用者に見せたい振る舞いは、[doctest](https://github.com/sol/doctest-haskell#readme) で書く
+2. 利用者に見せたくない振る舞いは、[hspec](http://hspec.github.com/) で書く
+3. テストを自動化するフレームワークとしては Cabal を使う
+4. doctest でも hspec でも、純粋なコードに対しては、できるだけ QuickCheck などの性質テストを書く
 
 この記事で一番伝えたいのは、3) です。例題としては、Base64 という符号化を取り上げます。Base64 は知っていると仮定して話を進めますので、知らない人はあらかじめ [Wikipedia の Base64 の説明](http://ja.wikipedia.org/wiki/Base64)でも読んで下さい。
 
