@@ -8,10 +8,10 @@ This article is a tutorial about unit testing in Haskell using doctest, hspec an
 
 Important points are summarized as follows:
 
-- The behaviors documenting the use of your library should be written with [doctest](https://github.com/sol/doctest-haskell#readme)
-- The behaviors documenting functionality rather than usage of your library should be written with [hspec](http://hspec.github.com/)
-- Cabal is used to automate testing with the frameworks
-- For pure code, QuickCheck property test cases (with doctest and/or hspec) should be written as much as possible
+1. The behaviors documenting the use of your library should be written with [doctest](https://github.com/sol/doctest-haskell#readme)
+2. The behaviors documenting functionality rather than usage of your library should be written with [hspec](http://hspec.github.com/)
+3. Cabal is used to automate testing with the frameworks
+4. For pure code, QuickCheck property test cases (with doctest and/or hspec) should be written as much as possible
 
 In this tutorial,
 we use Base64 encoding/decoding as an example.
