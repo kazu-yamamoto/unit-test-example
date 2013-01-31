@@ -19,11 +19,14 @@ Haskellで作成したパッケージに対して、単体テストを書くた�
 
 この記事で利用するコードの全体は、[unit-test-example](https://github.com/kazu-yamamoto/unit-test-example)というパッケージ名でgithubに置いてあります。以降の例では、このパッケージのトップディレクトリにいると想定しています。
 
+    % git clone git://github.com/kazu-yamamoto/unit-test-example.git
+    % cd unit-test-example
+
 ##doctest
 
 利用者に見せたい振る舞いは、doctest で書きます。そうすれば、マニュアルにもなりますし、テストにも使えます(本当は設計にも利用して欲しいのですが、今回は踏み込みません)。
 
-Haskell のドキュメントツールは Haddock です。コメントに、マークアップを使って説明を書きます。">>>" というマークアップが、利用例のために用意されています。
+Haskell のドキュメントツールは [Haddock](http://www.haskell.org/haddock/doc/html/) です。コメントに、マークアップを使って説明を書きます。">>>" というマークアップが、利用例のために用意されています。
 
 unit-test-example にある Codec.Base64 の例を見てみましょう。
 
@@ -69,7 +72,7 @@ GHCiなので、let とかも使えます。
 -- *** Exception: divide by zero
 ```
 
-詳しくは doctest のマニュアルを読んで下さい。
+詳しくは [doctest のマニュアル](https://github.com/sol/doctest-haskell#readme)を読んで下さい。
 
 以下のコマンドで、"dist" の下に HTML のマニュアルを作成できます。
 
@@ -92,7 +95,7 @@ doctest をインストールしていない人は、以下のコマンドを実
 
 ##hspec
 
-利用者に見せてもしょうがない振る舞いに関しては、hspec で記述します。モジュールファイル1つに対し、1つのテストファイルを書くのが基本です。たとえば、Base64.hs に対しては Base64Spec.hs というファイルにテストを記述します。
+利用者に見せたくない振る舞いに関しては、hspec で記述します。モジュールファイル1つに対し、1つのテストファイルを書くのが基本です。たとえば、Base64.hs に対しては Base64Spec.hs というファイルにテストを記述します。
 
 ここで注意が必要なのは、テスト用のファイルは、ソースとは異なるディレクトリに置くべきであるということです。こうすると、後で説明する Cabal で、テストが依存するパッケージとして自分自身が書けるようになります。
 
@@ -120,9 +123,9 @@ spec = do
             decode "cGFkZGluZzE=" `shouldBe` "padding1"
 ```
 
-このように hspec では、shouldBe など分かり易い単語を使って、テストケースを楽しく書けます。この「楽しい」という感覚がとても大事です。
+このように hspec では、`shouldBe` など分かり易い単語を使って、テストケースを楽しく書けます。この「楽しい」という感覚がとても大事です。
 
-上記の例は純粋ですが、もちろん IO も書けます。詳しい使い方は hspec のマニュアルを読んで下さい。shouldBe、shouldReturn、shouldThrow 要チェックです。
+上記の例は純粋ですが、もちろん IO も書けます。詳しい使い方は [hspec のマニュアル](http://hspec.github.com/)を読んで下さい。`shouldBe`、`shouldReturn`、`shouldThrow` 要チェックです。(RSpec 用語では、マッチャーと呼ばれています。)
 
 Spec は、hspec 関数で実行できます。
 
@@ -143,7 +146,7 @@ Spec は、hspec 関数で実行できます。
 
 ##QuickCheck
 
-hspec には QuickCheck の性質テストも記述できます。it を prop に変えれば OK です。
+hspec には QuickCheck の性質テストも記述できます。`it` を `prop` に変えれば OK です。
 
 ```hspec
 spec :: Spec
@@ -205,6 +208,8 @@ hspec では、以下の一行を "test/Spec.hs" ファイルに書き込みま�
 {-# OPTIONS_GHC -F -pgmF hspec-discover #-}
 ```
 
+この "test/Spec.hs" は、同じディレクトリ内にある hspec ファイルから hspec のテストを取得するコマンドを起動します。
+
 Cabal で自動的にテストする手順は以下の通りです。
 
     % cabal configure --enable-tests 
@@ -261,9 +266,9 @@ doctest の引数は、GHCi の引数とまったく同じです。doctest を�
 
 ###doctest と haddock と QuickCheck
 
-すでに haddock には "prop>" マークアップが用意されており、QuickCheck の性質を書けるようになっています。また、doctest もこれに対応しています。問題は、Haskell Platform に "prop>" 対応の haddock がいつ入るかです。
+すでに haddock には `prop>` マークアップが用意されており、QuickCheck の性質を書けるようになっています。また、doctest もこれに対応しています。問題は、Haskell Platform に `prop>` 対応の haddock がいつ入るかです。
 
-実は、haddock は GHC とともに配布されています。GHC は [haddock の "master" ブランチ](https://github.com/ghc/haddock)を機械的に利用します。"prop>" が実装されている haddock のブランチは、"ghc-7.6" です。ですので、"ghc-7.6" を "master" へマージしないといけません。現在、いくつかのテストが通らないのでマージされていませんが、近い将来マージされるでしょう。
+実は、haddock は GHC とともに配布されています。GHC は [haddock の "master" ブランチ](https://github.com/ghc/haddock)を機械的に利用します。`prop>` が実装されている haddock のブランチは、"ghc-7.6" です。ですので、"ghc-7.6" を "master" へマージしないといけません。現在、いくつかのテストが通らないのでマージされていませんが、近い将来マージされるでしょう。
 
 ###内部モジュール
 
@@ -276,5 +281,7 @@ Cabal のテスト機能で、この内部モジュールを利用するには�
 これで test 以下のモジュールから、内部モジュールを import できるようになります。ただし、テストがライブラリ自身に依存できなくなるので、Build-Depends にはライブラリ自身が依存するライブラリを書かなければならなくなります。
 
 ##最後に
+
+内容の間違いや誤植を発見したら、プルリクエストを送って下さると嬉しいです。
 
 I wish you a merry Christmas and happy unit-testing!
