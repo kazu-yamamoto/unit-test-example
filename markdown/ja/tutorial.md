@@ -125,7 +125,7 @@ spec = do
 
 このように hspec では、`shouldBe` など分かり易い単語を使って、テストケースを楽しく書けます。この「楽しい」という感覚がとても大事です。
 
-上記の例は純粋ですが、もちろん IO も書けます。詳しい使い方は [hspec のマニュアル](http://hspec.github.com/)を読んで下さい。`shouldBe`、`shouldReturn`、`shouldThrow` 要チェックです。(RSpec 用語では、マッチャーと呼ばれています。)
+上記の例は純粋ですが、もちろん IO も書けます。詳しい使い方は [hspec のマニュアル](http://hspec.github.com/)を読んで下さい。`shouldBe`、`shouldReturn`、`shouldThrow` は要チェックです。(RSpec 用語では、マッチャーと呼ばれています。)
 
 Spec は、hspec 関数で実行できます。
 
