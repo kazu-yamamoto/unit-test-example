@@ -1,5 +1,7 @@
 #Haskellの単体テスト最前線
 
+[English](../en/tutorial.md)
+
 これは[Haskell Advent Calendar 2012](http://partake.in/events/45a01d39-af5e-42f1-91c7-e8fcc91db244)の5日目の記事です。
 
 Haskellで作成したパッケージに対して、単体テストを書くための最新情報をお届けします。

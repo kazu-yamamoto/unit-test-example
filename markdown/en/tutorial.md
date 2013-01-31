@@ -1,5 +1,7 @@
 #Up-front Unit Testing in Haskell
 
+[Japanese](../ja/tutorial.md)
+
 This article is a tutorial about unit testing in Haskell using doctest, hspec and Cabal.
 
 ##Abstract
