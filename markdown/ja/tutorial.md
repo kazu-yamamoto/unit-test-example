@@ -268,7 +268,7 @@ doctest の引数は、GHCi の引数とまったく同じです。doctest を�
 
 すでに haddock には `prop>` マークアップが用意されており、QuickCheck の性質を書けるようになっています。また、doctest もこれに対応しています。問題は、Haskell Platform に `prop>` 対応の haddock がいつ入るかです。
 
-実は、haddock は GHC とともに配布されています。GHC は [haddock の "master" ブランチ](https://github.com/ghc/haddock)を機械的に利用します。`prop>` が実装されている haddock のブランチは、"ghc-7.6" です。ですので、"ghc-7.6" を "master" へマージしないといけません。現在、いくつかのテストが通らないのでマージされていませんが、近い将来マージされるでしょう。
+実は、haddock は GHC とともに配布されています。GHC は [haddock の "master" ブランチ](https://github.com/ghc/haddock)を機械的に利用します。`prop>` が実装されている haddock のブランチは、"ghc-7.6" です。ですので、"ghc-7.6" を "master" へマージしないといけません。現在、いくつかのテストが通らないのでマージされていませんが、近い将来マージされるでしょう。(追記：2013年2月13日、"ghc-7.6" は "master" へマージされました。この haddock が Haskell Platform で利用可能になったら、`prop>` の使い方について加筆します。)
 
 ###内部モジュール
 
