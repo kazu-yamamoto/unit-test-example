@@ -348,6 +348,7 @@ So, "ghc-7.6" should be merged into "master".
 Since some test cases fail at this moment,
 the merge has not been carried out yet.
 But I hope that "ghc-7.6" will be merged into "master" in the near future.
+(Postscript: "ghc-7.6" has been merged into "master" on 13 Feb 2013. I will explain this feature when the haddock becomes available in Haskell Platform.)
 
 ##Internal modules
 
