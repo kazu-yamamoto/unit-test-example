@@ -147,10 +147,10 @@ spec = do
     describe "decode" $ do
         it "decodes no padding" $
             decode "bm8tcGFkZGluZyEh" `shouldBe` "no-padding!!"
-        it "dncodes one padding" $
-            decode "cGFkZGluZyAgMg==" `shouldBe` "padding  2"
-        it "encodes two paddings" $
+        it "decodes one padding" $
             decode "cGFkZGluZzE=" `shouldBe` "padding1"
+        it "decodes two paddings" $
+            decode "cGFkZGluZyAgMg==" `shouldBe` "padding  2"
 ```
 
 As you can see,
