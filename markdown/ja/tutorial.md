@@ -117,10 +117,10 @@ spec = do
      describe "decode" $ do
         it "decodes no padding" $
             decode "bm8tcGFkZGluZyEh" `shouldBe` "no-padding!!"
-        it "dncodes one padding" $
-            decode "cGFkZGluZyAgMg==" `shouldBe` "padding  2"
-        it "encodes two paddings" $
+        it "decodes one padding" $
             decode "cGFkZGluZzE=" `shouldBe` "padding1"
+        it "decodes two paddings" $
+            decode "cGFkZGluZyAgMg==" `shouldBe` "padding  2"
 ```
 
 このように hspec では、`shouldBe` など分かり易い単語を使って、テストケースを楽しく書けます。この「楽しい」という感覚がとても大事です。
