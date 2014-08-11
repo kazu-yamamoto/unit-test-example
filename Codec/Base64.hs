@@ -10,6 +10,8 @@ import Data.Word
 --
 -- >>> encode "foo bar"
 -- "Zm9vIGJhcg=="
+--
+-- prop> decode (encode xs) == xs
 encode :: String -> String
 encode = map (base64array !) . encode' . map (fromIntegral . ord)
 
