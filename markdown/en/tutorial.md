@@ -2,7 +2,7 @@
 
 [[To Japanese]](../ja/tutorial.md)
 
-This article is a tutorial about unit testing in Haskell using doctest, hspec and Cabal.
+This article is a tutorial about unit testing in Haskell using doctest, hspec and Cabal. Readers are supposed to use Haskell Platform 2014.2.0.0 or later.
 
 ##Abstract
 
@@ -184,7 +184,7 @@ You can run Spec with the "hspec" function:
 
 ##QuickCheck
 
-QuickCheck Properties can be specified in hspec, too.
+QuickCheck properties can be specified in hspec, too.
 Just use `prop` instead of `it`:
 
 ```haskell
@@ -199,6 +199,19 @@ spec = do
         ...
         prop "reverses encoded string" $ \xs ->
             decode (encode xs) == xs
+```
+
+QuickCheck properties can also be specified in Haddock.
+Use the `prop>` keyword.
+
+```haskell
+-- |
+-- Base64 encoding.
+--
+-- >>> encode "foo bar"
+-- "Zm9vIGJhcg=="
+--
+-- prop> decode (encode xs) == xs
 ```
 
 ##Cabal
@@ -304,20 +317,6 @@ and a result is delivered to you by e-mail.
 
 ##Miscellaneous things
 
-###doctest and Mac
-
-doctest is implemented based on GHCi.
-Unfortunately, GHCi on Mac is unstable.
-Due to this,
-running doctest itself sometime fails.
-The following is my experience as a Mac user:
-
-- "cabal build + test" is more stable than executing the "doctest" command
-- 32 bit GHCi is more stable than 64 bit GHCi
-- GHCi 7.6.x is more stable than GHCi 7.4.x
-
-You should choose the combination of more stable ones if necessary.
-
 ###The doctest arguments
 
 The doctest arguments (function and command) is
@@ -331,24 +330,6 @@ and use it from Haskell with FFI,
 you may wonder what arguments should be specified.
 In this case,
 please refer to [unix-time](https://github.com/kazu-yamamoto/unix-time).
-
-###doctest, haddock and QuickCheck
-
-To describe QuickCheck properties in documents,
-the `prop>` markup is already defined in latest haddock (version 2.13.0 or later).
-Also, doctest already supports it.
-An open question is when the Haskell Platform will include
-a version of haddock which supports this notation.
-
-haddock is packaged with GHC.
-GHC automatically uses
-[the "master" branch of haddock](https://github.com/ghc/haddock).
-The branch supporting the `prop>` markup is "ghc-7.6".
-So, "ghc-7.6" should be merged into "master".
-Since some test cases fail at this moment,
-the merge has not been carried out yet.
-But I hope that "ghc-7.6" will be merged into "master" in the near future.
-(Postscript: "ghc-7.6" has been merged into "master" on 13 Feb 2013. I will explain this feature when the haddock becomes available in Haskell Platform.)
 
 ##Internal modules
 
