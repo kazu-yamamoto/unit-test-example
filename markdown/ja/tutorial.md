@@ -4,7 +4,7 @@
 
 これは[Haskell Advent Calendar 2012](http://partake.in/events/45a01d39-af5e-42f1-91c7-e8fcc91db244)の5日目の記事です。
 
-Haskellで作成したパッケージに対して、単体テストを書くための最新情報をお届けします。
+Haskellで作成したパッケージに対して、単体テストを書くための最新情報をお届けします。以下の記事では、Haskell Platform 2014.2.0.0 以降を使うことを前提とします。
 
 ##要約
 
@@ -148,7 +148,7 @@ Spec は、hspec 関数で実行できます。
 
 hspec には QuickCheck の性質テストも記述できます。`it` を `prop` に変えれば OK です。
 
-```hspec
+```haskell
 spec :: Spec
 spec = do
     describe "encode" $ do
@@ -160,6 +160,18 @@ spec = do
         ...
         prop "reverses encoded string" $ \xs ->
             decode (encode xs) == xs
+```
+
+doctest にも QuickCheck の性質テストを記述できます。`prop>` キーワードを使って下さい。
+
+```haskell
+-- |
+-- Base64 encoding.
+--
+-- >>> encode "foo bar"
+-- "Zm9vIGJhcg=="
+--
+-- prop> decode (encode xs) == xs
 ```
 
 ##Cabal
@@ -248,27 +260,11 @@ Travis CI は、github に push すると、自動的にテストを走らせて
 
 ##雑多なこと
 
-###doctest と Mac
-
-doctest は GHCi を利用して実装されています。残念ながら、Mac 上では GHCi が不安定です。このせいでテストの実行自体が失敗することがあります。以下に Mac ユーザーとしての僕の経験を書いておきます。
-
-- doctestコマンドよりも cabal build してコンパイルした方が安定してる
-- GHCi は、64ビット版よりも32ビット版の方が安定している
-- GHCi 7.4.x よりも GHCi 7.6.x の方が安定している
-
-安全な方を組み合わせてお使い下さい。
-
 ###doctest の引数
 
 doctest の引数は、GHCi の引数とまったく同じです。doctest をうまく動かすには、いろいろな引数が必要になることがあります。よくある例としては、"-XOverloadedStrings" が挙げられます。
 
 自分で書いたCのコードを、FFI でリンクしている場合は、指定すべき引数が分からなくて泣きそうになるかもしれません。その場合、[unix-time](https://github.com/kazu-yamamoto/unix-time) がまさにそういう例なので、参考にするとよいでしょう。
-
-###doctest と haddock と QuickCheck
-
-すでに haddock には `prop>` マークアップが用意されており、QuickCheck の性質を書けるようになっています。また、doctest もこれに対応しています。問題は、Haskell Platform に `prop>` 対応の haddock がいつ入るかです。
-
-実は、haddock は GHC とともに配布されています。GHC は [haddock の "master" ブランチ](https://github.com/ghc/haddock)を機械的に利用します。`prop>` が実装されている haddock のブランチは、"ghc-7.6" です。ですので、"ghc-7.6" を "master" へマージしないといけません。現在、いくつかのテストが通らないのでマージされていませんが、近い将来マージされるでしょう。(追記：2013年2月13日、"ghc-7.6" は "master" へマージされました。この haddock が Haskell Platform で利用可能になったら、`prop>` の使い方について加筆します。)
 
 ###内部モジュール
 
