@@ -176,8 +176,8 @@ You can run Spec with the "hspec" function:
     
     decode
       - decodes no padding
-      - dncodes one padding
-      - encodes two paddings
+      - decodes one padding
+      - decodes two paddings
     
     Finished in 0.0956 seconds
     6 examples, 0 failures
