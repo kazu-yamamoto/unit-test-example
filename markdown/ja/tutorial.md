@@ -138,8 +138,8 @@ Spec は、hspec 関数で実行できます。
     
     decode
       - decodes no padding
-      - dncodes one padding
-      - encodes two paddings
+      - decodes one padding
+      - decodes two paddings
     
     Finished in 0.0956 seconds
     6 examples, 0 failures
