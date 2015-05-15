@@ -247,7 +247,7 @@ If you store test files in the same directory of source code,
 you have to repeat the dependencies of your library here.
 
 For doctest,
-"test/doctest.hs" should be created in addition to the Cabal file:
+"test/doctests.hs" should be created in addition to the Cabal file:
 
 ```haskell
 module Main where
