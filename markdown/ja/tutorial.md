@@ -201,7 +201,7 @@ doctest にも QuickCheck の性質テストを記述できます。`prop>` キ�
 
 hspec のところで、依存するパッケージに自分自身(unit-test-example)が書けているのが分かりますか？ ディレクトリを分けないと、このパッケージが依存するライブラリを繰り返し書くはめになりますよ。
 
-doctest では、これに加えて以下のような内容を "test/doctest.hs" ファイルに用意します。
+doctest では、これに加えて以下のような内容を "test/doctests.hs" ファイルに用意します。
 
 ```haskell
 module Main where
