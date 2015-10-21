@@ -8,4 +8,4 @@ To activate CI, do the following:
 
 Then you get the following, nice banner!
 
-[![Build Status](https://travis-ci.org/nushio3/unit-test-example.png?branch=master)](https://travis-ci.org/nushio3/unit-test-example)
+[![Build Status](https://travis-ci.org/kazu-yamamoto/unit-test-example.png?branch=master)](https://travis-ci.org/kazu-yamamoto/unit-test-example)
