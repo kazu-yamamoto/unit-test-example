@@ -1,10 +1,10 @@
-#Up-front Unit Testing in Haskell
+# Up-front Unit Testing in Haskell
 
 [[To Japanese]](../ja/tutorial.md)
 
 This article is a tutorial about unit testing in Haskell using doctest, hspec and Cabal. Readers are supposed to use Haskell Platform 2014.2.0.0 or later.
 
-##Abstract
+## Abstract
 
 Important points are summarized as follows:
 
@@ -26,7 +26,7 @@ It is assumed henceforth that we are at the "unit-test-example" directory.
     % git clone git://github.com/kazu-yamamoto/unit-test-example.git
     % cd unit-test-example
 
-##doctest
+## doctest
 
 The behaviors documenting the use of your library should be written with doctest.
 If you do so,
@@ -112,7 +112,7 @@ If you haven't installed doctest yet, please execute the following command:
 This command will install the necessary libraries and commands
 without installing the current package.
 
-##hspec
+## hspec
 
 The behaviors documenting functionality rather than usage 
 of your library should be written with hspec.
@@ -182,7 +182,7 @@ You can run Spec with the "hspec" function:
     Finished in 0.0956 seconds
     6 examples, 0 failures
 
-##QuickCheck
+## QuickCheck
 
 QuickCheck properties can be specified in hspec, too.
 Just use `prop` instead of `it`:
@@ -214,7 +214,7 @@ Use the `prop>` keyword.
 -- prop> decode (encode xs) == xs
 ```
 
-##Cabal
+## Cabal
 
 To automate running test suites, use Cabal.
 You need to specify information about test suites
@@ -295,7 +295,7 @@ If you want to change it, do so as follows:
 
     % cabal test --test-option=--maximum-generated-tests=1000
 
-##Travis CI
+## Travis CI
 
 Travis CI is a service to automatically run test suites
 when you push your commits to github.
@@ -315,9 +315,9 @@ After that,
 test suites will be run on Travis CI when you push your commits
 and a result is delivered to you by e-mail.
 
-##Miscellaneous things
+## Miscellaneous things
 
-###The doctest arguments
+### The doctest arguments
 
 The doctest arguments (function and command) is
 exactly the same as that of GHCi.
@@ -331,7 +331,7 @@ you may wonder what arguments should be specified.
 In this case,
 please refer to [unix-time](https://github.com/kazu-yamamoto/unix-time).
 
-##Internal modules
+## Internal modules
 
 You may want to use hidden constructors in test cases.
 Common practice for this is to prepare
@@ -350,7 +350,7 @@ test suites cannot depend on your library itself in this case.
 So, you need to repeat that dependencies of your library
 in Build-Depends of test suites.
 
-##Remark
+## Remark
 
 I thank Alan Zimmerman for his proofreading.
 

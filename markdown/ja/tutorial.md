@@ -1,4 +1,4 @@
-#Haskellの単体テスト最前線
+# Haskellの単体テスト最前線
 
 [[To English]](../en/tutorial.md)
 
@@ -6,7 +6,7 @@
 
 Haskellで作成したパッケージに対して、単体テストを書くための最新情報をお届けします。以下の記事では、Haskell Platform 2014.2.0.0 以降を使うことを前提とします。
 
-##要約
+## 要約
 
 要点は4つです。
 
@@ -22,7 +22,7 @@ Haskellで作成したパッケージに対して、単体テストを書くた�
     % git clone git://github.com/kazu-yamamoto/unit-test-example.git
     % cd unit-test-example
 
-##doctest
+## doctest
 
 利用者に見せたい振る舞いは、doctest で書きます。そうすれば、マニュアルにもなりますし、テストにも使えます(本当は設計にも利用して欲しいのですが、今回は踏み込みません)。
 
@@ -93,7 +93,7 @@ doctest をインストールしていない人は、以下のコマンドを実
 
 こうすれば、現在のパッケージをインストールすることなく、必要なライブラリ(コマンド)をインストールできます。
 
-##hspec
+## hspec
 
 利用者に見せたくない振る舞いに関しては、hspec で記述します。モジュールファイル1つに対し、1つのテストファイルを書くのが基本です。たとえば、Base64.hs に対しては Base64Spec.hs というファイルにテストを記述します。
 
@@ -144,7 +144,7 @@ Spec は、hspec 関数で実行できます。
     Finished in 0.0956 seconds
     6 examples, 0 failures
 
-##QuickCheck
+## QuickCheck
 
 hspec には QuickCheck の性質テストも記述できます。`it` を `prop` に変えれば OK です。
 
@@ -174,7 +174,7 @@ doctest にも QuickCheck の性質テストを記述できます。`prop>` キ�
 -- prop> decode (encode xs) == xs
 ```
 
-##Cabal
+## Cabal
 
 テストを自動実行するには、Cabal を使います。準備として、テストのための情報を Cabal ファイルに書く必要があります。
 
@@ -242,7 +242,7 @@ Hspec のデフォルトでは QuickCheck の性質テストで乱数が100個�
 
     % cabal test --test-option=--maximum-generated-tests=1000
 
-##Travis CI
+## Travis CI
 
 Travis CI は、github に push すると、自動的にテストを走らせてくれるサービスです。利用するには、以下のような手順を踏みます。
 
@@ -258,15 +258,15 @@ Travis CI は、github に push すると、自動的にテストを走らせて
 
 これで、このパッケージに push するごとに、Travis CI 上でテストが走り、結果がメールで通知されます。
 
-##雑多なこと
+## 雑多なこと
 
-###doctest の引数
+### doctest の引数
 
 doctest の引数は、GHCi の引数とまったく同じです。doctest をうまく動かすには、いろいろな引数が必要になることがあります。よくある例としては、"-XOverloadedStrings" が挙げられます。
 
 自分で書いたCのコードを、FFI でリンクしている場合は、指定すべき引数が分からなくて泣きそうになるかもしれません。その場合、[unix-time](https://github.com/kazu-yamamoto/unix-time) がまさにそういう例なので、参考にするとよいでしょう。
 
-###内部モジュール
+### 内部モジュール
 
 テストのために非公開のコンストラクタを利用したくなることがあります。そのための常套手段は、内部モジュール(Internal.hs という名前が多い)を用意することです。この内部モジュールを読み込めば、コンストラクタが利用できるようになります。
 
@@ -276,7 +276,7 @@ Cabal のテスト機能で、この内部モジュールを利用するには�
 
 これで test 以下のモジュールから、内部モジュールを import できるようになります。ただし、テストがライブラリ自身に依存できなくなるので、Build-Depends にはライブラリ自身が依存するライブラリを書かなければならなくなります。
 
-##最後に
+## 最後に
 
 内容の間違いや誤植を発見したら、プルリクエストを送って下さると嬉しいです。
 
